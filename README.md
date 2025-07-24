@@ -78,3 +78,18 @@ It performs:
 
 Timur Samanchi
 GitHub: [[your-profile-link](https://github.com/timursamanchi)]
+
+Build and Push Docker Images
+```
+docker build -t aws-quote-backend ./backend
+docker build -t aws-quote-frontend ./frontend
+
+aws ecr create-repository --repository-name aws-quote-backend
+aws ecr create-repository --repository-name aws-quote-frontend
+
+docker tag aws-quote-backend:latest <account>.dkr.ecr.<region>.amazonaws.com/aws-quote-backend:latest
+docker tag aws-quote-frontend:latest <account>.dkr.ecr.<region>.amazonaws.com/aws-quote-frontend:latest
+
+docker push <ecr-backend-url>
+docker push <ecr-frontend-url>
+```
