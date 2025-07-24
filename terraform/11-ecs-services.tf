@@ -1,3 +1,7 @@
+#######################################
+# launch ECS services - frontend and backend
+#######################################
+
 resource "aws_ecs_service" "quote_backend_service" {
   name            = "quote-backend-service"
   cluster         = aws_ecs_cluster.quote_cluster.id

@@ -1,3 +1,7 @@
+#######################################
+# Registering ECS task definition
+#######################################
+
 resource "aws_ecs_task_definition" "quote_backend" {
   family                   = "quote-backend-task"
   network_mode             = "awsvpc"
