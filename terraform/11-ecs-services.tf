@@ -12,7 +12,7 @@ resource "aws_ecs_service" "quote_backend_service" {
   network_configuration {
     subnets          = [aws_subnet.public[0].id]
     security_groups  = [aws_security_group.ecs_cluster_sg.id]
-    assign_public_ip = true
+    assign_public_ip = false
   }
 
   depends_on = [aws_iam_role_policy_attachment.ecs_task_execution_role_policy]

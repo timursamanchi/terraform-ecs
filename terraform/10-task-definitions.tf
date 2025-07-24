@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "quote_backend" {
   container_definitions = jsonencode([
     {
       name  = "quote-backend"
-      image = "040929397520.dkr.ecr.eu-west-1.amazonaws.com/aws-quote-backend:ecs"
+      image = "040929397520.dkr.ecr.eu-west-1.amazonaws.com/quote-backend:ecs"
       portMappings = [
         {
           containerPort = 8080
@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "quote_frontend" {
   container_definitions = jsonencode([
     {
       name  = "quote-frontend"
-      image = "040929397520.dkr.ecr.eu-west-1.amazonaws.com/aws-quote-frontend:ecs"
+      image = "040929397520.dkr.ecr.eu-west-1.amazonaws.com/quote-frontend:ecs"
       portMappings = [
         {
           containerPort = 80
