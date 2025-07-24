@@ -77,4 +77,4 @@ It performs:
 👨‍💻 Author
 
 Timur Samanchi
-GitHub: [[your-profile-link](https://github.com/timursamanchi)]
+GitHub: [[here](https://github.com/timursamanchi)]
