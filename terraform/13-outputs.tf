@@ -1,11 +1,14 @@
-# Public subnet IDs
-output "public_subnet_ids" {
-  description = "IDs of public subnets"
-  value       = aws_subnet.public[*].id
+output "ecs_cluster_name" {
+  description = "Name of the ECS Cluster"
+  value       = aws_ecs_cluster.quote_cluster.name
 }
 
-# Public subnet CIDRs
-output "public_subnet_cidrs" {
-  description = "CIDR blocks of public subnets"
-  value       = aws_subnet.public[*].cidr_block
+output "quote_backend_service_name" {
+  description = "Name of the ECS backend service"
+  value       = aws_ecs_service.quote_backend_service.name
+}
+
+output "quote_frontend_service_name" {
+  description = "Name of the ECS frontend service"
+  value       = aws_ecs_service.quote_frontend_service.name
 }
