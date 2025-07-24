@@ -8,7 +8,7 @@
   "containerDefinitions": [
     {
       "name": "quote-frontend",
-      "image": "040929397520.dkr.ecr.eu-west-1.amazonaws.com/aws-quote-frontend:latest",
+      "image": "040929397520.dkr.ecr.eu-west-1.amazonaws.com/quote-frontend:ecs",
       "portMappings": [{ "containerPort": 80 }]
     }
   ]
