@@ -64,16 +64,3 @@ resource "aws_security_group_rule" "ecs_all_out" {
   security_group_id = aws_security_group.ecs_cluster_sg.id
 }
 
-       "arn:aws:ecs:eu-west-1:040929397520:task/ecs-test-deplyment-cluster/59a521e058eb4f7f815a6934f8912ec7",
-        "arn:aws:ecs:eu-west-1:040929397520:task/ecs-test-deplyment-cluster/62221aa3f84a4cb596ece446491f3b22"
-
-aws ecs describe-tasks \
-  --cluster ecs-test-deplyment-cluster \
-  --tasks arn:aws:ecs:eu-west-1:040929397520:task/ecs-test-deplyment-cluster/62221aa3f84a4cb596ece446491f3b22 \
-  --query "tasks[0].attachments[0].details[?name=='publicIPv4Address'].value" \
-  --output text
-
-aws ec2 describe-network-interfaces \
-  --network-interface-ids eni-006eed2fea3835bcf \
-  --query "NetworkInterfaces[0].Association.PublicIp" \
-  --output text
