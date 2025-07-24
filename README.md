@@ -17,7 +17,7 @@ The architecture consists of:
 - Images pulled from **Amazon ECR**
 - Optional: future support for ALB and Route53 DNS
 
-![Architecture Diagram](./ECS cluster architecture diagram Jul 24, 2025, 08_13_00 PM.png)
+![Architecture Diagram](../A_flowchart_diagram_in_digital_vector_graphic_form.png)
 
 ---
 
@@ -77,4 +77,4 @@ It performs:
 👨‍💻 Author
 
 Timur Samanchi
-GitHub: [[here](https://github.com/timursamanchi)]
+GitHub: [[your-profile-link](https://github.com/timursamanchi)]
