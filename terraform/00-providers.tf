@@ -1,6 +1,5 @@
 # providers file
 
-
 terraform {
   required_version = ">= 1.0"
   required_providers {
@@ -24,12 +23,18 @@ terraform {
       source  = "hashicorp/random"
       version = ">= 3.0"
     }
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.2"
+    }
   }
 }
+
 provider "tls" {}
 provider "local" {}
 provider "time" {}
 provider "random" {}
+provider "null" {}
 
 provider "aws" {
   region = var.aws_region
