@@ -12,7 +12,7 @@ resource "aws_security_group" "ecs_cluster_sg" {
 }
 
 resource "aws_security_group_rule" "ecs_ssh_in" {
-  # Allows SSH (port 22) inbound to ecs cluster, only from your IP
+  # Allows SSH (port 22) inbound to ecs cluster, only from var.allowed_ingress_cidr
   type              = "ingress"
   from_port         = 22
   to_port           = 22
@@ -22,6 +22,7 @@ resource "aws_security_group_rule" "ecs_ssh_in" {
 }
 
 resource "aws_security_group_rule" "ecs_http_in" {
+  # Allows http (port 80) inbound to ecs cluster, only from var.allowed_ingress_cidr
   type              = "ingress"
   from_port         = 80
   to_port           = 80
@@ -32,6 +33,7 @@ resource "aws_security_group_rule" "ecs_http_in" {
 }
 
 resource "aws_security_group_rule" "ecs_https_in" {
+  # Allows https (port 443) inbound to ecs cluster, only from var.allowed_ingress_cidr
   type              = "ingress"
   from_port         = 443
   to_port           = 443
