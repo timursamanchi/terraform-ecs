@@ -37,7 +37,7 @@ variable "ecs_cluster_count" {
 #######################################
 variable "allowed_ingress_cidr" {
   description = "The CIDR block allowed to SSH, HTTP and HTTPS access"
-  type        = string
+  type        = list(string)
   default     = ["0.0.0.0/0"] # ⚠ TEMPORARY — update before production. 
 }
 #######################################
