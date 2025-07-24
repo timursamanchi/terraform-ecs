@@ -17,7 +17,7 @@ The architecture consists of:
 - Images pulled from **Amazon ECR**
 - Optional: future support for ALB and Route53 DNS
 
-![Architecture Diagram](./A_flowchart_diagram_in_digital_vector_graphic_form.png)
+![Architecture Diagram](./ECS cluster architecture diagram Jul 24, 2025, 08_13_00 PM.png)
 
 ---
 
