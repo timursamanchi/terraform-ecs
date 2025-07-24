@@ -11,7 +11,6 @@ variable "aws_region" {
 #######################################
 # VPC Configuration
 #######################################
-
 variable "vpc_name" {
   description = "project VPC name"
   type        = string
@@ -32,3 +31,13 @@ variable "ecs_cluster_count" {
   type        = number
   default     = 1
 }
+
+#######################################
+# Ingress Access Configuration
+#######################################
+variable "allowed_ssh_cidr" {
+  description = "The CIDR block allowed to SSH, HTTP and HTTPS access"
+  type        = string
+  default     = ["0.0.0.0/0"] # ⚠ TEMPORARY — update before production. 
+}
+#######################################
