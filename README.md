@@ -120,6 +120,14 @@ docker push <ecr-frontend-url>
 
 healthcheck commands
 ```
+# get vpc ID
+aws ec2 describe-vpcs --region eu-west-1 --query "Vpcs[*].VpcId" --output text
+
+aws ec2 describe-internet-gateways \
+  --query "InternetGateways[?Attachments[?VpcId=='vpc-02e2b9c7a6c087b42']]" \
+  --region eu-west-1
+
+
 # Example: Get backend public IP
 aws ecs list-tasks \
   --cluster ecs-test-deplyment-cluster \
