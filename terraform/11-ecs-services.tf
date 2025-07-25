@@ -1,5 +1,5 @@
 #######################################
-# launch ECS services - frontend and backend
+# launch ECS services - backend
 #######################################
 
 resource "aws_ecs_service" "quote_backend_service" {
@@ -12,11 +12,15 @@ resource "aws_ecs_service" "quote_backend_service" {
   network_configuration {
     subnets          = [aws_subnet.public[0].id]
     security_groups  = [aws_security_group.ecs_cluster_sg.id]
-    assign_public_ip = false
+    assign_public_ip = true
   }
 
   depends_on = [aws_iam_role_policy_attachment.ecs_task_execution_role_policy]
 }
+
+#######################################
+# launch ECS services - frontend
+#######################################
 
 resource "aws_ecs_service" "quote_frontend_service" {
   name            = "quote-frontend-service"
