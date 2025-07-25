@@ -124,7 +124,7 @@ healthcheck commands
 aws ec2 describe-vpcs --region eu-west-1 --query "Vpcs[*].VpcId" --output text
 
 aws ec2 describe-internet-gateways \
-  --query "InternetGateways[?Attachments[?VpcId=='vpc-02e2b9c7a6c087b42']]" \
+  --query "InternetGateways[?Attachments[?VpcId=='vpc-0ec0b4e455023b995']]" \
   --region eu-west-1
 
 

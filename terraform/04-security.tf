@@ -49,7 +49,7 @@ resource "aws_security_group_rule" "ecs_backend_in" {
   from_port         = 8080
   to_port           = 8080
   protocol          = "tcp"
-  cidr_blocks       = [aws_vpc.ecs_vpc.cidr_block]
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.ecs_cluster_sg.id
   description       = "Allow backend traffic from VPC"
 }
