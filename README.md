@@ -27,18 +27,42 @@ The architecture consists of:
 
 ```
 terraform-ecs/
-├── docker/
-├── scripts/
-│   ├── test-ecs-health.sh
-├── terraform/
+├── ECS cluster architecture diagram Jul 24, 2025, 08_13_00 PM.png
+├── LICENSE
+├── README.md
+├── docker
+│   ├── quote-backend
+│   │   └── Dockerfile
+│   └── quote-frontend
+│       ├── Dockerfile
+│       ├── default.conf
+│       └── index.html
+├── scripts
+│   ├── 13-healthcheck.tf
+│   ├── get-public-ip.sh
+│   ├── healthcheck-test.sh
+│   ├── quote-backend-task.json
+│   ├── quote-frontend-task.json
+│   └── terraform.tfstate
+├── terraform
 │   ├── 00-providers.tf
 │   ├── 01-variables.tf
-│   ├── ...
+│   ├── 02-locals.tf
+│   ├── 03-vpc.tf
+│   ├── 04-security.tf
+│   ├── 05-igw.tf
+│   ├── 06-subnets.tf
+│   ├── 07-routes.tf
+│   ├── 08-iam.tf
+│   ├── 09-ecs-cluster.tf
+│   ├── 10-task-definitions.tf
 │   ├── 11-ecs-services.tf
-│   └── 12-health-check.tf
-├── terraform.tfvars
-├── terraform.tfstate
-└── README.md
+│   ├── 12-cloudwatch-logs.tf
+│   ├── 14-outputs.tf
+│   ├── terraform.tfstate
+│   ├── terraform.tfstate.backup
+│   └── terraform.tfvars
+└── terraform.tfstate
 
 ```
 
@@ -92,4 +116,64 @@ docker tag aws-quote-frontend:latest <account>.dkr.ecr.<region>.amazonaws.com/aw
 
 docker push <ecr-backend-url>
 docker push <ecr-frontend-url>
+```
+
+healthcheck commands
+```
+# Example: Get backend public IP
+aws ecs list-tasks \
+  --cluster ecs-test-deplyment-cluster \
+  --service-name quote-backend-service \
+  --desired-status RUNNING \
+  --region eu-west-1
+
+# Then plug task ARN into:
+aws ecs describe-tasks \
+  --cluster ecs-test-deplyment-cluster \
+  --tasks arn:aws:ecs:eu-west-1:040929397520:task/ecs-test-deplyment-cluster/a1acb84803df481e95e00ef94730b55e \
+  --region eu-west-1 \
+  --query "tasks[0].attachments[0].details[?name=='networkInterfaceId'].value" \
+  --output text
+
+# Then use networkInterfaceId to get IP:
+aws ec2 describe-network-interfaces \
+  --network-interface-ids eni-08cae240819469f94 \
+  --region eu-west-1 \
+  --query "NetworkInterfaces[0].Association.PublicIp" \
+  --output text
+
+
+# Example: Get backend public IP
+aws ecs list-tasks \
+  --cluster ecs-test-deplyment-cluster \
+  --service-name quote-backend-service \
+  --desired-status RUNNING \
+  --region eu-west-1
+
+# Then plug task ARN into:
+aws ecs describe-tasks \
+  --cluster ecs-test-deplyment-cluster \
+  --tasks <task-arn> \
+  --region eu-west-1 \
+  --query "tasks[0].attachments[0].details[?name=='networkInterfaceId'].value" \
+  --output text
+
+# Then use networkInterfaceId to get IP:
+aws ec2 describe-network-interfaces \
+  --network-interface-ids <eni-id> \
+  --region eu-west-1 \
+  --query "NetworkInterfaces[0].Association.PublicIp" \
+  --output text
+
+aws logs get-log-events \
+  --log-group-name /ecs/quote-backend \
+  --log-stream-name <stream-name> \
+  --region eu-west-1
+
+aws ecs describe-services \
+  --cluster ecs-test-deplyment-cluster \
+  --services quote-backend-service \
+  --region eu-west-1 \
+  --query "services[0].deployments[0].rolloutState"
+
 ```

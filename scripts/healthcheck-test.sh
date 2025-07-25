@@ -61,3 +61,5 @@ aws ecs describe-tasks \
   --tasks arn:aws:ecs:eu-west-1:040929397520:task/ecs-test-deplyment-cluster/ff07cd181c914774b8b53152b70d4ee8 \
   --region eu-west-1 \
   --query 'tasks[0].stoppedReason'
+
+
