@@ -9,5 +9,5 @@ locals {
 
   # Optional offsets
   public_subnet_offset  = 0
-  private_subnet_offset = local.subnet_count
+  private_subnet_offset = 1
 }
